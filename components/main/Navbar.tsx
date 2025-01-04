@@ -32,7 +32,7 @@ const Navbar = () => {
           <a href="#skills" className="cursor-pointer">
             Araç & Nesne Takibi
           </a>
-          <a href="#projects" className="cursor-pointer">
+          <a href="#about-me" className="cursor-pointer">
             Hakkımızda
           </a>
           <a href="#contact" className="cursor-pointer">

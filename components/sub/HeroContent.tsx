@@ -30,15 +30,15 @@ const HeroContent = () => {
 
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+          className="flex flex-col gap-6 mt-6 text-5xl font-bold text-white max-w-[600px] w-auto h-auto"
         >
           <span>
-            Providing
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            YolX Mobile
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-500">
               {" "}
-              the best{" "}
+              filo yönetimi{" "}
             </span>
-            project exprience
+            markası
           </span>
         </motion.div>
 
@@ -46,8 +46,9 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          I&apos;m a Full Stack Software Engineer with experience in Website,
-          Mobile, and Software development. Check out my projects and skills.
+          Yolx Mobile'in yapay zeka destekli teknolojisi ve tak-çalıştır çözüm
+          portföyüyle endüstriyel operasyonlarınızı dijitalleştirin. İş
+          kazalarını önleyin ve verimliliği artırın.
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
@@ -59,13 +60,14 @@ const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="w-full h-full flex justify-center items-center"
+        className="w-full h-full flex justify-center items-center hidden md:flex"
       >
         <Image
-          src="/mainIconsdark.svg"
+          src="/NavLogo1.png"
           alt="work icons"
           height={650}
           width={650}
+          className="hidden md:block"
         />
       </motion.div>
     </motion.div>
