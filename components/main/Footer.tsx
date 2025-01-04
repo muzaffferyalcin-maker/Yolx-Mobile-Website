@@ -85,8 +85,10 @@ const Footer = () => {
             </p>
           </div>
         </div>
-
-        <div className="mb-[20px] text-[15px] text-center mt-8">
+        <div className="mb-[20px] text-[20px] text-center mt-4 ">
+          Müşteri Hizmetleri : 0850 307 9919
+        </div>
+        <div className="mb-[20px] text-[15px] text-center font-bold">
           &copy; YolX Mobile GPS 2024 | Tüm hakları saklıdır.
         </div>
       </div>
