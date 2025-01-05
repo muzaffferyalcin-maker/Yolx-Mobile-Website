@@ -46,8 +46,8 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          Yolx Mobile'in yapay zeka destekli teknolojisi ve tak-çalıştır çözüm
-          portföyüyle endüstriyel operasyonlarınızı dijitalleştirin. İş
+          Yolx Mobile&apos;in yapay zeka destekli teknolojisi ve tak-çalıştır
+          çözüm portföyüyle endüstriyel operasyonlarınızı dijitalleştirin. İş
           kazalarını önleyin ve verimliliği artırın.
         </motion.p>
         <motion.a

@@ -5,7 +5,7 @@ const Projects = () => {
   return (
     <div className="flex flex-col items-center justify-center" id="projects">
       <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-500 py-20 text-center">
-        Neden Yolx Mobile'ı Tercih Etmelisiniz?
+        Neden Yolx Mobile&apos;ı Tercih Etmelisiniz?
       </h1>
       <div className="flex flex-wrap gap-8 justify-center">
         <ProjectCard

@@ -16,7 +16,7 @@ const Encryption = () => {
           Küresel Dağıtım
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-500">
             {" "}
-            &{" "}
+            &amp;{" "}
           </span>
           Satış Sonrası Hizmet Ağı
         </motion.div>
@@ -42,17 +42,17 @@ const Encryption = () => {
 
         <div className="Welcome-box px-[15px] py-[4px] z-[20] brder my-[20px] border-[#7042f88b] opacity-[0.9]">
           <h1 className="Welcome-text text-[12px]">
-            Küresel Dağıtım & Satış Sonrası Hizmet Ağı
+            Küresel Dağıtım &amp; Satış Sonrası Hizmet Ağı
           </h1>
         </div>
       </div>
       <div className="absolute z-[20] bottom-[10px] px-[5px]">
         <div className="cursive text-[20px] font-medium text-center text-gray-300">
           Anahtar Teslim Çözümlerimizle 65 Ülkede ve 5 Kıtada Çok Uluslu
-          Markalara Hizmet Sunuyoruz. 250'den Fazla Çalışan ve 60'tan Fazla
-          AR-GE Personeliyle Ürünlerimizi Şirket İçinde Geliştirip Üretiyoruz.
-          Dünya Çapında Şubeler, Distribütörler ve Kapsamlı Satış Sonrası
-          Desteğimizle Endüstriyel Güvenlik ve Verimlilik Sağlıyoruz.
+          Markalara Hizmet Sunuyoruz. 250&apos;den Fazla Çalışan ve 60&apos;tan
+          Fazla AR-GE Personeliyle Ürünlerimizi Şirket İçinde Geliştirip
+          Üretiyoruz. Dünya Çapında Şubeler, Distribütörler ve Kapsamlı Satış
+          Sonrası Desteğimizle Endüstriyel Güvenlik ve Verimlilik Sağlıyoruz.
         </div>
       </div>
 
