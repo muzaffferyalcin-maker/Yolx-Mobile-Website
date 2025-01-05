@@ -17,7 +17,7 @@ const HeroContent = () => {
       animate="visible"
       className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto md:text-start text-center">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
@@ -52,7 +52,7 @@ const HeroContent = () => {
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px] mx-auto md:mx-0 px-6"
         >
           Ürünlerimizi Keşfet!
         </motion.a>
@@ -60,7 +60,7 @@ const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="w-full h-full flex justify-center items-center  md:flex"
+        className="w-full h-full  justify-center items-center hidden  md:flex"
       >
         <Image
           src="/NavLogo1.png"
