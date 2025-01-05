@@ -4,7 +4,7 @@ import React from "react";
 interface Props {
   src: string;
   title: string;
-  description: string;
+  description: React.ReactNode;
 }
 
 const ProjectCard = ({ src, title, description }: Props) => {
