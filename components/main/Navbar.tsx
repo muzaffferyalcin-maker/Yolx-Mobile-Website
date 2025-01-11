@@ -3,6 +3,7 @@
 import { Socials } from "@/constants";
 import Image from "next/image";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const Navbar = () => {
     <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-5 lg:px-10">
       <div className="w-full h-full flex items-center justify-between m-auto">
         {/* Logo */}
-        <a href="#about-me" className="h-auto w-auto flex items-center">
+        <Link href="/" className="h-auto w-auto flex items-center">
           <Image
             src="/NavLogo1.png"
             alt="logo"
@@ -22,22 +23,22 @@ const Navbar = () => {
           <span className="font-bold ml-2 hidden sm:block text-gray-300">
             YolX Mobile GPS
           </span>
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center justify-between w-[550px] h-auto border border-[#7042f861] bg-[#0300145e] px-[20px] py-[10px] rounded-full text-gray-200">
-          <a href="#about-me" className="cursor-pointer">
+          <Link href="/products" className="cursor-pointer">
             Ürünler & Servisler
-          </a>
-          <a href="#skills" className="cursor-pointer">
+          </Link>
+          <Link href="/tracking" className="cursor-pointer">
             Araç & Nesne Takibi
-          </a>
-          <a href="#about-me" className="cursor-pointer">
+          </Link>
+          <Link href="/about" className="cursor-pointer">
             Hakkımızda
-          </a>
-          <a href="#contact" className="cursor-pointer">
+          </Link>
+          <Link href="/contact" className="cursor-pointer">
             İletişim
-          </a>
+          </Link>
         </div>
 
         {/* Hamburger Menu */}
@@ -80,18 +81,18 @@ const Navbar = () => {
       {menuOpen && (
         <div className="absolute top-16 left-0 w-full bg-[#0300145e] border border-[#7042f861] rounded-md shadow-lg py-4">
           <div className="flex flex-col items-center gap-4 text-gray-200">
-            <a href="#about-me" className="cursor-pointer">
+            <Link href="/products" className="cursor-pointer">
               Ürünler & Servisler
-            </a>
-            <a href="#skills" className="cursor-pointer">
+            </Link>
+            <Link href="/tracking" className="cursor-pointer">
               Araç & Nesne Takibi
-            </a>
-            <a href="#projects" className="cursor-pointer">
+            </Link>
+            <Link href="/about" className="cursor-pointer">
               Hakkımızda
-            </a>
-            <a href="#contact" className="cursor-pointer">
+            </Link>
+            <Link href="/contact" className="cursor-pointer">
               İletişim
-            </a>
+            </Link>
             <div className="flex items-center gap-4">
               {Socials.map((social) => (
                 <Image
