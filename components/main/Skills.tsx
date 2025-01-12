@@ -17,8 +17,8 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden "
-      style={{ transform: "scale(0.9" }}
+      className="flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden"
+      style={{ transform: "scale(0.9)" }}
     >
       <SkillText />
 
@@ -37,7 +37,7 @@ const Skills = () => {
 
         <div className="flex flex-1 flex-col items-start justify-center text-center md:text-start gap-5">
           <h1 className="text-[30px] text-white font-medium mt-[10px] text-center mb-[15px]">
-            Trafik Kurallarına Uygunluk & Sürüş Güvenliği
+            Trafik Kurallarına Uygunluk &amp; Sürüş Güvenliği
           </h1>
           <p className="text-[20px] text-white font-light mt-[10px] text-center md:text-start mb-[15px]">
             Araçların limit aşımlarının, ani fren ve manevralarının anlık olarak
@@ -47,7 +47,7 @@ const Skills = () => {
           </p>
           <motion.a
             variants={slideInFromLeft(1)}
-            className="py-2 button-primary text-center text-white  cursor-pointer rounded-lg max-w-[200px] px-6 mx-auto md:mx-0"
+            className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px] px-6 mx-auto md:mx-0"
           >
             Daha fazla bilgi
           </motion.a>
