@@ -47,12 +47,15 @@ const Encryption = () => {
         </div>
       </div>
       <div className="absolute z-[20] bottom-[10px] px-[5px]">
-        <div className="cursive text-[20px] font-medium text-center text-gray-300">
-          Anahtar Teslim Çözümlerimizle 65 Ülkede ve 5 Kıtada Çok Uluslu
-          Markalara Hizmet Sunuyoruz. 250&apos;den Fazla Çalışan ve 60&apos;tan
-          Fazla AR-GE Personeliyle Ürünlerimizi Şirket İçinde Geliştirip
-          Üretiyoruz. Dünya Çapında Şubeler, Distribütörler ve Kapsamlı Satış
-          Sonrası Desteğimizle Endüstriyel Güvenlik ve Verimlilik Sağlıyoruz.
+        <div className=" text-[20px] font-medium text-center text-gray-300">
+          YOLX MOBİLE, Filo Yönetimi için Gps, 4G Android Araç DVR, 4G Mini Araç
+          Kamerası tasarımı, geliştirilmesi ve üretimi ile ilgilenen profesyonel
+          bir üretici ve ihracatçı firmadır. Başta Rusya, ABD olmak üzere 61'den
+          fazla ülkeye, bölgeye ihracat yapmaktadır. Fransa, Polonya, Güney
+          Kore, Japonya, Vietnam, Tayland vb. YOLX MOBILE Şimdi Türkiye'de!!
+          Ürünlerimiz CE, RoHS, CCC, E-mark, FCC sertifikaları, EN50155, IK08 VE
+          AITM EKXVI uygunluk sertifikası ile yetkilendirilmiştir. Her zaman
+          üstün kaliteli ürünler üretmek için hazır konumdayız.
         </div>
       </div>
 
