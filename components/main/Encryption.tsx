@@ -46,16 +46,18 @@ const Encryption = () => {
           </h1>
         </div>
       </div>
+
       <div className="absolute z-[20] bottom-[10px] px-[5px]">
-        <div className=" text-[20px] font-medium text-center text-gray-300">
+        <div className="text-[20px] font-medium text-center text-gray-300">
           YOLX MOBİLE, Filo Yönetimi için Gps, 4G Android Araç DVR, 4G Mini Araç
           Kamerası tasarımı, geliştirilmesi ve üretimi ile ilgilenen profesyonel
-          bir üretici ve ihracatçı firmadır. Başta Rusya, ABD olmak üzere 61'den
-          fazla ülkeye, bölgeye ihracat yapmaktadır. Fransa, Polonya, Güney
-          Kore, Japonya, Vietnam, Tayland vb. YOLX MOBILE Şimdi Türkiye'de!!
-          Ürünlerimiz CE, RoHS, CCC, E-mark, FCC sertifikaları, EN50155, IK08 VE
-          AITM EKXVI uygunluk sertifikası ile yetkilendirilmiştir. Her zaman
-          üstün kaliteli ürünler üretmek için hazır konumdayız.
+          bir üretici ve ihracatçı firmadır. Başta Rusya, ABD olmak üzere
+          61&apos;den fazla ülkeye, bölgeye ihracat yapmaktadır. Fransa,
+          Polonya, Güney Kore, Japonya, Vietnam, Tayland vb. YOLX MOBILE Şimdi
+          Türkiye&apos;de!! Ürünlerimiz CE, RoHS, CCC, E-mark, FCC
+          sertifikaları, EN50155, IK08 VE AITM EKXVI uygunluk sertifikası ile
+          yetkilendirilmiştir. Her zaman üstün kaliteli ürünler üretmek için
+          hazır konumdayız.
         </div>
       </div>
 
@@ -67,7 +69,7 @@ const Encryption = () => {
           playsInline
           preload="false"
           className="w-full h-auto"
-          src="/encryption.webm/"
+          src="/encryption.webm"
         />
       </div>
     </div>

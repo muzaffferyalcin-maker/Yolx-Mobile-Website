@@ -12,6 +12,7 @@ import SkillDataProvider from "../sub/SkillDataProvider";
 import SkillText from "../sub/SkillText";
 import { motion } from "framer-motion";
 import { slideInFromLeft } from "@/utils/motion";
+import Image from "next/image";
 
 const Skills = () => {
   return (
@@ -28,9 +29,11 @@ const Skills = () => {
         style={{ transform: "scale(0.9)" }}
       >
         <div className="flex flex-1 items-center justify-center">
-          <img
+          <Image
             src="/car-rental.jpg"
             alt="Skills Illustration"
+            width={500} // Görüntü genişliği
+            height={500} // Görüntü yüksekliği
             className="w-full max-w-md h-auto object-contain rounded-lg shadow-lg"
           />
         </div>
