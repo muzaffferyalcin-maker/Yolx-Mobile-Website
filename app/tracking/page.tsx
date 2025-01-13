@@ -41,7 +41,7 @@ export default function Tracking() {
 
                 <div className="w-full flex flex-col items-center">
                   <Image
-                    src="/car-2.png"
+                    src="/car-2nd.png"
                     alt="YOLX MNVR TS-922"
                     width={200}
                     height={100}

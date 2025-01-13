@@ -164,23 +164,21 @@ export default function Products() {
                     YOLX 121 IPCAM
                   </h3>
                 </div>
-
                 <div className="w-full flex flex-col items-center">
                   <img
                     src="/mnvr-4.png"
                     alt="YOLX HD Bullet Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
+                    className="rounded-lg w-full h-[300px] hidden sm:block object-contain"
                   />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
+                  <h3 className="text-lg font-semibold text-white hidden sm:block  mt-4 text-center">
                     YOLX 122 IP CAM
                   </h3>
                 </div>
-
-                <div className="w-full flex flex-col items-center">
+                <div className="w-full flex flex-col items-center justify-center">
                   <img
                     src="/mnvr-5.png"
                     alt="YOLX PTZ Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
+                    className="rounded-lg w-full sm:w-1/2 md:w-3/4 lg:w-full h-[300px] object-contain"
                   />
                   <h3 className="text-lg font-semibold text-white mt-4 text-center">
                     YOLX EKRAN
@@ -221,7 +219,7 @@ export default function Products() {
         {/* Dashcam Bölümü */}
 
         <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10">
+          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
             4G Araç Kameraları Ürünlerimiz
           </h2>
 
@@ -732,7 +730,7 @@ export default function Products() {
         {/* Basic Araç Kameraları Bölümü */}
 
         <div className="flex flex-col items-center px-4 md:px-20 pb-20">
-          <h2 className="text-3xl font-semibold text-white mb-10">
+          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
             Basic Araç Kameraları Ürünlerimiz
           </h2>
 
