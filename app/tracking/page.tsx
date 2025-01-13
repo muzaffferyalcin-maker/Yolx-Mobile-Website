@@ -8,7 +8,7 @@ export default function Tracking() {
     <main className="h-full w-full">
       <div className="flex flex-col gap-20">
         <div className="flex flex-col items-center justify-center pt-20 px-4 md:px-20">
-          <h1 className="text-[40px] font-bold text-white mb-4 ">
+          <h1 className="text-[40px] font-bold text-white mb-4 text-center ">
             Araçlar & Nesne Takibi
           </h1>
           <p className="text-gray-300 text-center max-w-2xl">

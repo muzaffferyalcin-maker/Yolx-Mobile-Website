@@ -404,7 +404,7 @@ export default function Products() {
         {/* Vücut Kameraları Bölümü */}
 
         <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10">
+          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
             Vücut Kameraları Ürünlerimiz
           </h2>
 

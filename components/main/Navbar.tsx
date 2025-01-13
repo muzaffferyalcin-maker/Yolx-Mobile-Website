@@ -2,11 +2,37 @@
 
 import { Socials } from "@/constants";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null); // Correctly define the ref type
+
+  // Detect clicks outside the menu to close it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Only close the menu if it's open and click is outside
+      if (
+        menuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) // Type assertion for event.target
+      ) {
+        setMenuOpen(false); // Close the menu if clicked outside
+      }
+    };
+
+    // Add event listener to close the menu when clicking outside
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]); // Re-run the effect when `menuOpen` state changes
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle the menu open/close
+  };
 
   return (
     <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-5 lg:px-10">
@@ -44,7 +70,7 @@ const Navbar = () => {
         {/* Hamburger Menu */}
         <button
           className="md:hidden flex items-center justify-center text-gray-200 focus:outline-none"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleMenu} // Use the toggle function to open/close menu
         >
           <svg
             className="w-6 h-6"
@@ -85,7 +111,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-[#0300145e] border border-[#7042f861] rounded-md shadow-lg py-4">
+        <div
+          ref={menuRef} // Attach the menu to the ref
+          className="absolute top-16 left-0 w-full bg-[#0300145e] border border-[#7042f861] rounded-md shadow-lg py-4 backdrop-blur-lg z-10"
+        >
           <div className="flex flex-col items-center gap-4 text-gray-200">
             <Link href="/products" className="cursor-pointer">
               Ürünler & Servisler
@@ -101,14 +130,21 @@ const Navbar = () => {
             </Link>
             <div className="flex items-center gap-4">
               {Socials.map((social) => (
-                <Image
-                  src={social.src}
-                  alt={social.name}
+                <Link
+                  href={social.href}
                   key={social.name}
-                  width={24}
-                  height={24}
-                  className="cursor-pointer"
-                />
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer pointer-events-auto" // Ensure clickable on mobile
+                >
+                  <Image
+                    src={social.src}
+                    alt={social.name}
+                    width={24}
+                    height={24}
+                    className="cursor-pointer"
+                  />
+                </Link>
               ))}
             </div>
           </div>
