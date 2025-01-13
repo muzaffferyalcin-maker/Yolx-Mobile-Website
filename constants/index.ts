@@ -84,10 +84,13 @@ export const Skill_data = [
     {
       name: "Linkedin",
       src: "/linkedin.png",
+     href: "https://www.linkedin.com/company/yolx-mobile" 
     },
     {
       name: "Instagram",
       src: "/instagram.svg",
+     href: "https://www.instagram.com/yolxmobile/ " 
+
     },
     // {
     //   name: "Instagram",

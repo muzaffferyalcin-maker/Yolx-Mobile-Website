@@ -65,14 +65,20 @@ const Navbar = () => {
         {/* Social Icons */}
         <div className="hidden md:flex items-center gap-5">
           {Socials.map((social) => (
-            <Image
-              src={social.src}
-              alt={social.name}
+            <Link
+              href={social.href}
               key={social.name}
-              width={24}
-              height={24}
-              className="cursor-pointer"
-            />
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={social.src}
+                alt={social.name}
+                width={24}
+                height={24}
+                className="cursor-pointer"
+              />
+            </Link>
           ))}
         </div>
       </div>
