@@ -4,19 +4,19 @@ export default function About() {
   return (
     <main className="w-full h-full">
       <div className="flex flex-col gap-20">
-        <div className="flex flex-col items-center justify-center pt-20 pb-10 px-4 md:px-20 ">
-          <h1 className="text-[40px] font-bold text-white mb-4 ">Hakkımızda</h1>
-          <p className="text-gray-300 text-center  mb-4">
+        <div className="flex flex-col items-center justify-center pt-20 pb-10 px-4 md:px-20">
+          <h1 className="text-[40px] font-bold text-white mb-4">Hakkımızda</h1>
+          <p className="text-gray-300 text-center mb-4">
             YOLX MOBİLE, Filo Yönetimi için Gps, 4G Android Araç DVR, 4G Mini
             Araç Kamerası tasarımı, geliştirilmesi ve üretimi ile ilgilenen
             profesyonel bir üretici ve ihracatçı firmadır.
           </p>
           <p className="text-gray-300 text-center mb-12">
-            Başta Rusya, ABD olmak üzere 61'den fazla ülkeye, bölgeye ihracat
-            yapmaktadır. Fransa, Polonya, Güney Kore, Japonya, Vietnam, Tayland
-            vb. YOLX MOBILE Şimdi Türkiye'de. Ürünlerimiz CE, RoHS, CCC, E-mark,
-            FCC sertifikaları ile yetkilendirilmiştir. Her zaman üstün kaliteli
-            ürünler üretmek için hazır konumdayız.
+            Başta Rusya, ABD olmak üzere 61&apos;den fazla ülkeye, bölgeye
+            ihracat yapmaktadır. Fransa, Polonya, Güney Kore, Japonya, Vietnam,
+            Tayland vb. YOLX MOBILE Şimdi Türkiye&apos;de. Ürünlerimiz CE, RoHS,
+            CCC, E-mark, FCC sertifikaları ile yetkilendirilmiştir. Her zaman
+            üstün kaliteli ürünler üretmek için hazır konumdayız.
           </p>
           <p className="text-white font-bold text-3xl md:text-4xl text-center max-w-2xl mb-6 leading-snug shadow-md">
             YOLX MOBİLE, neler sunar?
