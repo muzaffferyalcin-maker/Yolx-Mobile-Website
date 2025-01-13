@@ -7,31 +7,28 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null); // Correctly define the ref type
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  // Detect clicks outside the menu to close it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Only close the menu if it's open and click is outside
       if (
         menuOpen &&
         menuRef.current &&
-        !menuRef.current.contains(event.target as Node) // Type assertion for event.target
+        !menuRef.current.contains(event.target as Node)
       ) {
-        setMenuOpen(false); // Close the menu if clicked outside
+        setMenuOpen(false);
       }
     };
 
-    // Add event listener to close the menu when clicking outside
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuOpen]); // Re-run the effect when `menuOpen` state changes
+  }, [menuOpen]);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle the menu open/close
+    setMenuOpen(!menuOpen);
   };
 
   return (
