@@ -15,60 +15,84 @@ const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="flex flex-col md:flex-row items-center justify-between gap-10"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center  m-auto md:text-start text-center">
+      {/* Sol taraf: metin */}
+      <motion.div
+        variants={slideInFromLeft(0.3)}
+        className="flex flex-col gap-6 max-w-xl"
+      >
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex justify-center sm:justify-start items-center sm:ml-0 ml-4"
+          className="inline-flex items-center text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-3 py-1"
         >
-          <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px] text-center sm:text-left">
-            Araç & Nesne Takip Sistemi
-          </h1>
+          <SparklesIcon className="w-4 h-4 mr-2" />
+          Araç Takip, Kamera ve Solar Çözümler Tek Platformda
+        </motion.div>
+
+        <motion.h1
+          variants={slideInFromLeft(0.5)}
+          className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight"
+        >
+          YOLX Mobile ile{" "}
+          <span className="text-blue-600">
+            filonuzu, kameralarınızı ve ekipmanlarınızı
+          </span>{" "}
+          gerçek zamanlı yönetin.
+        </motion.h1>
+
+        <motion.p
+          variants={slideInFromLeft(0.6)}
+          className="text-base md:text-lg text-slate-600"
+        >
+          AİTM ve UKOME 2025 uyumlu araç takip cihazları, yapay zeka destekli
+          sürücü kameraları, iş makinesi ve solar çözümler ile tüm varlıklarınızı
+          tek ekrandan izleyin, kayıt altına alın ve raporlayın.
+        </motion.p>
+
+        <motion.div
+          variants={slideInFromLeft(0.7)}
+          className="flex flex-col sm:flex-row gap-3"
+        >
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700"
+          >
+            Teklif Al
+          </a>
+          <a
+            href="/products"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-slate-300 text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50"
+          >
+            Ürünleri İncele
+          </a>
         </motion.div>
 
         <motion.div
-          variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 mt-6 text-5xl font-bold text-white max-w-[600px] w-auto h-auto"
-        >
-          <span>
-            YolX Mobile
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-500">
-              {" "}
-              filo yönetimi{" "}
-            </span>
-            markası
-          </span>
-        </motion.div>
-
-        <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="flex flex-wrap gap-4 text-xs text-slate-500"
         >
-          Yolx Mobile&apos;in yapay zeka destekli teknolojisi ve tak-çalıştır
-          çözüm portföyüyle endüstriyel operasyonlarınızı dijitalleştirin. İş
-          kazalarını önleyin ve verimliliği artırın.
-        </motion.p>
-        <motion.a
-          variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px] mx-auto md:mx-0 px-6"
-        >
-          Ürünlerimizi Keşfet!
-        </motion.a>
-      </div>
+          <span>✓ Araç Takip & Filo Yönetimi</span>
+          <span>✓ AI Destekli Sürücü Kamerası</span>
+          <span>✓ Solar & Deniz Çözümleri</span>
+          <span>✓ İş Makinesi ve Özel Projeler</span>
+        </motion.div>
+      </motion.div>
 
+      {/* Sağ taraf: görsel */}
       <motion.div
-        variants={slideInFromRight(0.8)}
-        className="w-full h-full  justify-center items-center hidden  md:flex"
+        variants={slideInFromRight(0.5)}
+        className="w-full md:w-1/2 flex justify-center"
       >
-        <Image
-          src="/NavLogo1.png"
-          alt="work icons"
-          height={650}
-          width={650}
-          className="hidden md:block"
-        />
+        <div className="relative w-full max-w-md">
+          <Image
+            src="/SpaceWebsite.png"
+            alt="YOLX Filo Yönetim Ekranı"
+            width={650}
+            height={650}
+            className="rounded-3xl shadow-xl border border-slate-200"
+          />
+        </div>
       </motion.div>
     </motion.div>
   );

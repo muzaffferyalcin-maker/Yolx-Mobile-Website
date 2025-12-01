@@ -1,927 +1,361 @@
 "use client";
 
-import { slideInFromLeft } from "@/utils/motion";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { slideInFromLeft } from "@/utils/motion";
+import Link from "next/link";
+
+type Product = {
+  name: string;
+  tag: string;
+  desc: string;
+  bullets: string[];
+};
+
+const cameraProducts: Product[] = [
+  {
+    name: "YOLX Poyraz Pro",
+    tag: "AI Sürücü Kamerası (6 Kanal)",
+    desc: "Gelişmiş yapay zeka sürücü analizi, 6 kameraya kadar destek ve yüksek kapasiteli kayıt sistemi.",
+    bullets: [
+      "2 × 512 GB hafıza kartı ile uzun süreli 1080p kayıt",
+      "6 adede kadar kamera (ön, iç, yan, arka vb.)",
+      "Şerit ihlali, takip mesafesi, ani fren/hızlanma uyarıları",
+      "Sigara, kemer, telefon kullanımı ve dikkatsizlik algılama",
+      "Panik butonu, bas-konuş ve ses kaydı fonksiyonları",
+    ],
+  },
+  {
+    name: "YOLX Poyraz",
+    tag: "AI Sürücü Kamerası (5 Kanal)",
+    desc: "AI destekli sürücü analizi ve çok kameralı kayıt ile filo güvenliğini artıran çözüm.",
+    bullets: [
+      "5 kameraya kadar destek",
+      "Kemersiz sürüş, sigara, telefon ve dikkat dağınıklığı tespiti",
+      "Şerit takibi ve öndeki araca yaklaşma uyarıları",
+      "G-sensör ile hırsızlık ve darbe algılama",
+    ],
+  },
+  {
+    name: "YOLX 2",
+    tag: "Çift Kamera Araç İçi Sistem",
+    desc: "Ön + iç kamera, 4G bağlantı ve ses kaydı özellikli kompakt araç içi çözüm.",
+    bullets: [
+      "Tek gövdede 2 adet 1080p kamera",
+      "256 GB hafıza kartı desteği",
+      "4G SIM kart ile canlı izleme",
+      "G-sensör ve ses kaydı desteği",
+    ],
+  },
+  {
+    name: "YOLX 2 Pro",
+    tag: "Üç Kameralı Araç İçi Sistem",
+    desc: "3 kanala kadar kamera desteği ve geniş hafıza imkanı sağlayan araç içi kamera çözümü.",
+    bullets: [
+      "3 adet 1080p kamera girişi",
+      "512 GB hafıza kartı desteği",
+      "4G SIM üzerinden uzaktan erişim",
+      "G-sensör ve panik butonu desteği",
+    ],
+  },
+  {
+    name: "YOLX TEK",
+    tag: "Tek Kameralı Araç Kamerası",
+    desc: "Tek kanallı, ekonomik ve basit kurulumlu araç içi kamera çözümü.",
+    bullets: [
+      "1080p tek kamera kaydı",
+      "128 GB hafıza kartı desteği",
+      "4G bağlantı ve gece görüşü",
+      "G-sensör ile olay bazlı kayıt",
+    ],
+  },
+];
+
+const mnvrProducts: Product[] = [
+  {
+    name: "YOLX MNVR TS-920",
+    tag: "AİTM & UKOME 2025 Uyumlu Araç İçi Kayıt",
+    desc: "Toplu taşıma ve servis araçları için çok kameralı kayıt, canlı izleme ve filo entegrasyonuna sahip MNVR sistemi.",
+    bullets: [
+      "4 IP kamera (opsiyonel 8–12 kanal)",
+      "H.265 sıkıştırma ile yüksek verimlilik",
+      "4 TB SSD + SD kart kayıt desteği",
+      "Wi-Fi hotspot, GPS ve 4G bağlantı",
+      "Panik butonu, bas-konuş ve ortam dinleme",
+    ],
+  },
+  {
+    name: "YOLX MNVR TS-610",
+    tag: "Kompakt MNVR Çözümü",
+    desc: "AİTM EKXVI ve UKOME şartlarını karşılayacak şekilde tasarlanmış kompakt araç içi kayıt cihazı.",
+    bullets: [
+      "4 IP kamera desteği",
+      "2 TB SSD kapasitesi",
+      "Panik butonu ve sensör girişleri",
+      "Yakıt ve kapı sensörleri ile entegrasyon opsiyonu",
+    ],
+  },
+  {
+    name: "YOLX MDVR PRO",
+    tag: "Profesyonel Çok Kanallı MDVR",
+    desc: "Yüksek kanal sayısı ve yapay zeka desteği ile ağır hizmet filoları için gelişmiş araç içi kayıt sistemi.",
+    bullets: [
+      "8 kanal (opsiyonel 16 kanal) kamera desteği",
+      "4 TB SSD + 1 TB SD kart kapasitesi",
+      "AI sürücü analizi ve çoklu sensör girişleri",
+      "9–36 V geniş besleme aralığı",
+    ],
+  },
+  {
+    name: "YOLX MDVR MINI",
+    tag: "Kompakt MDVR Çözümü",
+    desc: "4 kameraya kadar destek sunan, yapay zeka özellikli kompakt MDVR çözümü.",
+    bullets: [
+      "4 adet 1080p kamera girişi",
+      "1 TB SD kart desteği",
+      "4G SIM kart ile uzaktan erişim",
+      "AI destekli sürücü analizi fonksiyonları",
+    ],
+  },
+];
+
+const trackingProducts: Product[] = [
+  {
+    name: "YOLX GP360",
+    tag: "GPS Araç Takip Cihazı",
+    desc: "Binek ve ticari araçlar için kompakt, ekonomik ve güçlü araç takip cihazı.",
+    bullets: [
+      "2G / 4G seçenekleri",
+      "GPS + GLONASS + GALILEO uydu desteği",
+      "Ani hızlanma / ani yavaşlama ve rölanti takibi",
+      "Gerçek zamanlı konum, hız ve rota raporları",
+    ],
+  },
+  {
+    name: "YOLX Lighting",
+    tag: "Çakmak Girişli Takip Cihazı",
+    desc: "Araç çakmak girişine takılarak kullanılan pratik araç takip çözümü.",
+    bullets: [
+      "Tak-çalıştır yapı, montaj gerektirmez",
+      "180 mAh dahili batarya",
+      "Çoklu uydu desteği ile hassas konum",
+      "Mobil uygulama ve SMS bildirimleri",
+    ],
+  },
+  {
+    name: "YOLX MotoGPS",
+    tag: "Motosiklet Takip Cihazı",
+    desc: "Motosikletler için çalınma ve hareket takibi odaklı GPS cihazı.",
+    bullets: [
+      "650 mAh batarya ile uzun bekleme süresi",
+      "90 saate kadar park modu izleme",
+      "Konum ve hareket alarmı",
+      "Suya dayanıklı gövde yapısı",
+    ],
+  },
+  {
+    name: "YOLX TAKO",
+    tag: "Takograf Uzaktan Okuma Cihazı",
+    desc: "Takograf verilerini uzaktan okumak isteyen filolar için geliştirilmiş çözüm.",
+    bullets: [
+      "Gerçek zamanlı takograf verisi indirme",
+      "RS232 / RS485 cihazlar ile uyum",
+      "FMS bağlantısı ile filo sistemlerine entegrasyon",
+    ],
+  },
+  {
+    name: "YOLX CANBUS Modülü",
+    tag: "CAN Veri Okuma ve Kontrol",
+    desc: "Araç CAN hattından detaylı veri okuma ve bazı fonksiyonları kontrol etmeye yarayan modül.",
+    bullets: [
+      "J1939 protokolü üzerinden CAN okuma",
+      "KM, yakıt seviyesi, kapı, immobilizer verileri",
+      "Uzaktan kapı kilitleme vb. fonksiyonlar",
+      "Geniş araç marka/model uyumluluğu",
+    ],
+  },
+];
+
+const longLifeProducts: Product[] = [
+  {
+    name: "YOLX Solar",
+    tag: "Solar Takip Cihazı",
+    desc: "Elektrik altyapısının kısıtlı olduğu alanlarda, özellikle balıkçı tekneleri ve iç deniz hatlarında uzun ömürlü takip.",
+    bullets: [
+      "12.000 mAh batarya ve solar panel ile yıllara yayılan kullanım",
+      "Günde 1–2 rapor ile 5–10 yıla kadar izleme senaryosu",
+      "IP67 koruma sınıfı dayanıklı gövde",
+      "4G altyapısı ile deniz ve kara bölgelerinde veri iletimi",
+    ],
+  },
+  {
+    name: "YOLX Konteyner",
+    tag: "Uzun Ömürlü Konteyner Takip",
+    desc: "Konteyner ve benzeri ekipmanlar için batarya odaklı takip çözümü.",
+    bullets: [
+      "7.500 mAh batarya ile uzun süreli kullanım",
+      "1–3 yıl arası kullanım senaryoları",
+      "Hız ve hareket alarmı",
+      "Type-C ile kolay şarj",
+    ],
+  },
+  {
+    name: "YOLX Menhole",
+    tag: "Rögar Kapağı Sensörü",
+    desc: "Altyapı hatlarının güvenliği için rögar kapaklarına takılan IoT güvenlik sensörü.",
+    bullets: [
+      "Kapak açılma ve eğim sensörü",
+      "Su baskını algılama",
+      "Yaklaşık 5 yıl pil ömrü",
+      "Şebeke ve altyapı güvenliği için ideal",
+    ],
+  },
+];
+
+const bodycamProducts: Product[] = [
+  {
+    name: "YOLX B07",
+    tag: "4G Destekli Vücut Kamerası",
+    desc: "Güvenlik güçleri ve saha ekipleri için 4G bağlantılı, yüksek çözünürlüklü vücut kamerası.",
+    bullets: [
+      "1440p video ve 32 MP fotoğraf",
+      "4G + WiFi bağlantısı ve GPS",
+      "16 saate kadar kayıt süresi",
+      "NFC opsiyonu ve telsiz benzeri bas-konuş",
+    ],
+  },
+  {
+    name: "YOLX B01",
+    tag: "Kompakt Vücut Kamerası",
+    desc: "Uzaktan bağlantı gerektirmeyen, lokal kayıt odaklı hafif vücut kamerası.",
+    bullets: [
+      "1080p video kaydı",
+      "10 saate kadar çalışma süresi",
+      "128 GB hafıza",
+      "Hafif ve ergonomik tasarım",
+    ],
+  },
+];
+
+const iotProducts: Product[] = [
+  {
+    name: "YOLX PET",
+    tag: "Hayvan Takip Cihazı",
+    desc: "Evcil ve sokak hayvanlarını takip etmek, güvenlik ve bakım süreçlerini yönetmek için geliştirilmiş çözüm.",
+    bullets: [
+      "Coğrafi çit (güvenli alan) tanımlama",
+      "Saniyelik takip ve evden uzaklaşma alarmı",
+      "Bakım ve besleme kalitesi odaklı veri toplama",
+    ],
+  },
+];
+
+function SectionBlock({
+  title,
+  products,
+}: {
+  title: string;
+  products: Product[];
+}) {
+  return (
+    <section className="px-4 md:px-8">
+      <div className="max-w-6xl mx-auto flex flex-col gap-6">
+        <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
+          {title}
+        </h2>
+
+        <div className="grid grid-cols-1 gap-6">
+          {products.map((p, index) => (
+            <motion.div
+              key={p.name}
+              variants={slideInFromLeft(0.2 + index * 0.05)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row gap-6"
+            >
+              <div className="flex-1">
+                <span className="inline-flex text-[11px] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 mb-3">
+                  {p.tag}
+                </span>
+                <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-3">
+                  {p.name}
+                </h3>
+                <p className="text-sm md:text-base text-slate-600 mb-4">
+                  {p.desc}
+                </p>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-slate-600">
+                  {p.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex flex-col items-start justify-between gap-3 md:w-52">
+                <p className="text-xs text-slate-500">
+                  Detaylı teknik döküman ve fiyatlandırma için bizimle
+                  iletişime geçebilirsiniz.
+                </p>
+                <div className="flex flex-col gap-2 w-full">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 w-full"
+                  >
+                    Teklif Al
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Products() {
-  useEffect(() => {
-    console.log("Products");
-  }, []);
-
   return (
     <main className="h-full w-full">
-      <div className="flex flex-col gap-20 ">
-        <div className="flex flex-col items-center justify-center pt-20 px-4 md:px-20 ">
-          <h1 className="text-[40px] font-bold text-white mb-4 ">
-            Ürünler & Servisler
-          </h1>
-          <p className="text-gray-300 text-center max-w-2xl">
-            Araç takip sistemleri ve filo yönetimi çözümlerimiz ile işletmenizi
-            daha verimli hale getirin
-          </p>
-        </div>
-
-        <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10">
-            Mobil NVR Ürünlerimiz
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/mnvr-1.png"
-                  alt="YOLX MNVR TS-920"
-                  className="rounded-lg w-full max-w-md"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX MNVR TS-610
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Gerçek zamanlı konum takibi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Yakıt tüketim analizi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    AITM EKXVI ‘ya uygun
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    UKOME 2025 Onaylı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği, panik butonu, wi-fi özelliği, uzaktan
-                    izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    H265 Video sıkıştırma desteği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4 Kanal IP kamera bağlantısı (opsiyonel 8 -12 kanal
-                    eklenebilir)
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/mnvr-2.png"
-                  alt="YOLX MNVR TS-921"
-                  className="rounded-lg w-full max-w-md"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX MNVR TS-920
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Gerçek zamanlı konum takibi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Yakıt tüketim analizi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    AITM EKXVI ‘ya uygun
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    UKOME 2025 Onaylı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği, panik butonu, wi-fi özelliği, uzaktan
-                    izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4g Sim Kart (5g opsiyonel, 2. Sim opsiyonel)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ekran istenirse opsiyonel eklenebilir.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center px-4 md:px-20">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-                {/* Üst Sıra - 3 Kamera */}
-                <div className="w-full  flex-col items-center md:block hidden">
-                  <img
-                    src="/mnvr-3.png"
-                    alt="YOLX HD Dome Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                    YOLX 121 IPCAM
-                  </h3>
-                </div>
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/mnvr-4.png"
-                    alt="YOLX HD Bullet Kamera"
-                    className="rounded-lg w-full h-[300px] hidden sm:block object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white hidden sm:block  mt-4 text-center">
-                    YOLX 122 IP CAM
-                  </h3>
-                </div>
-                <div className="w-full flex flex-col items-center justify-center">
-                  <img
-                    src="/mnvr-5.png"
-                    alt="YOLX PTZ Kamera"
-                    className="rounded-lg w-full sm:w-1/2 md:w-3/4 lg:w-full h-[300px] object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                    YOLX EKRAN
-                  </h3>
-                </div>
-
-                {/* Alt Sıra - 2 Kamera */}
-                <div className="w-full flex flex-col items-center col-span-3  justify-center gap-8">
-                  <div className="grid grid-cols-2 gap-8 max-w-[800px]">
-                    <div className="w-full flex flex-col items-center">
-                      <img
-                        src="/mnvr-6.png"
-                        alt="YOLX IP Kamera"
-                        className="rounded-lg w-full h-[300px] object-contain"
-                      />
-                      <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                        YOLX PANİK
-                      </h3>
-                    </div>
-
-                    <div className="w-full flex flex-col items-center">
-                      <img
-                        src="/mnvr-7.png"
-                        alt="YOLX 360° Kamera"
-                        className="rounded-lg w-full h-[300px] object-contain"
-                      />
-                      <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                        YOLX 347 IP CAM
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="flex flex-col gap-16 py-16">
+        {/* Başlık */}
+        <section className="px-4 md:px-8">
+          <div className="max-w-6xl mx-auto">
+            <motion.h1
+              variants={slideInFromLeft(0.2)}
+              initial="hidden"
+              animate="visible"
+              className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+            >
+              Ürünlerimiz
+            </motion.h1>
+            <p className="text-sm md:text-base text-slate-600 max-w-3xl">
+              YOLX Mobile ürün ailesi; AI destekli sürücü kameralarından çok
+              kameralı araç içi kayıt sistemlerine, araç takip cihazlarından
+              solar ve vücut kameralarına kadar geniş bir yelpazede çözümler
+              sunar. Aşağıda ürün gruplarımızı inceleyebilirsiniz.
+            </p>
           </div>
-        </div>
+        </section>
 
-        {/* Dashcam Bölümü */}
-
-        <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
-            4G Araç Kameraları Ürünlerimiz
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/dashcam-2.png"
-                  alt="YOLX MNVR TS-920"
-                  className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX POYRAZ PRO
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği vardır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4 Kamera destekler
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    1 Kanal AHD 1080P(1290*1080) İkinci, üçüncü , dördüncü kanal
-                    AHD 720P(1280*720)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    GPS + Google çift bantları, harici GPS anteni ile araç takip
-                    özelliği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    GSM BANTLARI: 4G (LTE FDD: B1/B3/B5/B8 ) LTE (TDD:
-                    B34/B38/B39/B40/B41) 3G (WCDMA:B1/B5/B8) 2G (GSM:
-                    900/1800MHZ)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Tek tuş panik butonu (isteğe bağlı)
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/dashcam-1.png"
-                  alt="YOLX MNVR TS-921"
-                  className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX TAKSİM
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği vardır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4 kamera desteklenir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Taksimetre özelliği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Nfc özelliği sayesinde sürücü tanıma
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Pos makinası entegrasyonu
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Geri görüş (Geri vites) kamerası olarak kullanılabilir
-                  </li>
-
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ortam Sesi Dinleme + Bas Konuş özelliği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Yapay Zeka İşlevi (isteğe bağlı)
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center px-4 md:px-20">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-                {/* Üst Sıra - 3 Kamera */}
-                <div className="w-full flex flex-col items-center ">
-                  <img
-                    src="/dashcam-3.png"
-                    alt="YOLX HD Dome Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                    YOLX HD Dome Kamera
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/dashcam-4.png"
-                    alt="YOLX HD Bullet Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                    YOLX HD Bullet Kamera
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/dashcam-5.png"
-                    alt="YOLX PTZ Kamera"
-                    className="rounded-lg w-full h-[300px] object-contain"
-                  />
-                  <h3 className="text-lg font-semibold text-white mt-4 text-center">
-                    YOLX PTZ Kamera
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Vücut Kameraları Bölümü */}
-
-        <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
-            Vücut Kameraları Ürünlerimiz
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 w-full">
-            <div className="flex flex-col items-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-1.png"
-                    alt="YOLX MNVR TS-920"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B07
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-2.png"
-                    alt="YOLX MNVR TS-921"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B07
-                  </h3>
-                </div>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    1440P yüksek kaliteli video kaydı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    32 Megapixel fotoğraf çekimi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Dahili 4G ve WiFi 2.4Ghz internet hizmeti
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Dahili Gps anteni
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    IP66 sızdırmazlık sertifikası (Opsiyonel IP67)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4400 Mah Batarya kapasitesi sayesinde 16+ saat kayıt ve
-                    takip imkanı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Opsiyonel NFC sayesinde kart okuma ve kart tanımlama
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-3xl mx-auto">
-                {/* Üst sıra - ilk 2 resim */}
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-3.png"
-                    alt="YOLX MNVR TS-921"
-                    className="rounded-lg w-full max-w-md h-[100px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B01
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-4.png"
-                    alt="YOLX MNVR TS-922"
-                    className="rounded-lg w-full max-w-md h-[100px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B01
-                  </h3>
-                </div>
-
-                {/* Alt sıra - son 2 resim */}
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-5.png"
-                    alt="YOLX MNVR TS-923"
-                    className="rounded-lg w-full max-w-md h-[100px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B01
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/body-6.png"
-                    alt="YOLX MNVR TS-924"
-                    className="rounded-lg w-full max-w-md h-[100px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX B01
-                  </h3>
-                </div>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    10 Saat Kayıt imkanı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    120 Derece görüş
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    1080P Full HD Video Kaydı
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Dahili 1200 Mah batarya kapasitesi
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Harici kart desteği 128 GB kadar yükseltebilme
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    100 Gram hafif tasarım
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izleme bulunmamaktadır.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobil DVR Bölümü */}
-
-        <div className="flex flex-col items-center px-4 md:px-20">
-          <h2 className="text-3xl font-semibold text-white mb-10">
-            Mobil DVR Ürünlerimiz
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 w-full">
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/dvr-1.png"
-                  alt="YOLX MNVR TS-920"
-                  className="rounded-lg w-full max-w-md  h-[300px] object-contain"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX MİNİ
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği vardır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    8 kameraya kadar destekleyebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ekran istenirse opsiyonel eklenebilir.
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    GPS + Google çift bantları, harici GPS anteni ile araç konum
-                    takib
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ortam Sesi Dinleme + Bas Konuş özelliği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    9V-36 V için uygun, adaptör gerekmez
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/dvr-2.png"
-                    alt="YOLX MNVR TS-920"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX 4 PLUS
-                  </h3>
-                </div>
-
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/dvr-3.png"
-                    alt="YOLX MNVR TS-921"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX 4 PLUS
-                  </h3>
-                </div>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Araç takip özelliği vardır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izlenebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    8 kameraya kadar destekleyebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ekran istenirse opsiyonel eklenebilir.
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    GPS + Google çift bantları, harici GPS anteni ile araç konum
-                    takib
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Ortam Sesi Dinleme + Bas Konuş özelliği
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    9V-36 V için uygun, adaptör gerekmez
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Basic Araç Kameraları Bölümü */}
-
-        <div className="flex flex-col items-center px-4 md:px-20 pb-20">
-          <h2 className="text-3xl font-semibold text-white mb-10 text-center">
-            Basic Araç Kameraları Ürünlerimiz
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
-            <div className="flex flex-col items-center">
-              <div className="w-full flex flex-col items-center">
-                <img
-                  src="/basic-3.png"
-                  alt="YOLX MNVR TS-920"
-                  className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                />
-                <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                  YOLX POYRAZ
-                </h3>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izleme bulunmamaktadır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Wifi desteği ile uygulama üzerinden konum geçmişi
-                    görünebilir
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Maksimum 32GB SD kartı (dahildir)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    2 kamera desteklemektedir.
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    3.0 inç ekran
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Video formatı: AVI
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Video çözünürlüğü: Ön 1080P+Arka 720P
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="  gap-8 w-full">
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/basic-1.png"
-                    alt="YOLX MNVR TS-920"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX 1Y
-                  </h3>
-                </div>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izleme bulunmamaktadır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Maksimum 128 GB SD kartı (dahildir)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    2 kamera desteklemektedir.
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    7.0 inç ekran
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Video formatı: AVI
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Video çözünürlüğü: Ön 1080P+Arka 720P
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Kamera ön FHD 1080P, arka AHD 720P 140° geniş açılı görünüm
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="  gap-8 w-full">
-                <div className="w-full flex flex-col items-center">
-                  <img
-                    src="/basic-2.png"
-                    alt="YOLX MNVR TS-920"
-                    className="rounded-lg w-full max-w-md h-[300px] object-contain"
-                  />
-                  <h3 className="text-xl font-semibold text-white mt-4 pb-4">
-                    YOLX 4Y
-                  </h3>
-                </div>
-              </div>
-
-              <div className="w-full pt-5">
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Uzaktan izleme bulunmamaktadır
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Maksimum 128 GB SD kartı (dahildir)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    4 kamera desteklemektedir.
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    10.0 inç ekran
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    USB desteği ile ekrana telefon yansıtma özelliği (screen
-                    mirroring)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Video çözünürlüğü: Ön 1080P+Arka 720P
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="bg-[#4042f8] p-1.5 rounded-md w-6 h-6 flex items-center justify-center">
-                      <span className="text-white">✓</span>
-                    </span>
-                    Kamera ön FHD 1080P, arka AHD 720P 140° geniş açılı görünüm
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SectionBlock
+          title="AI Sürücü Kameraları ve Araç İçi Kameralar"
+          products={cameraProducts}
+        />
+        <SectionBlock
+          title="Araç İçi Kayıt Sistemleri (MNVR / MDVR)"
+          products={mnvrProducts}
+        />
+        <SectionBlock
+          title="Araç Takip ve CANBUS Çözümleri"
+          products={trackingProducts}
+        />
+        <SectionBlock
+          title="Solar ve Uzun Ömürlü Takip Çözümleri"
+          products={longLifeProducts}
+        />
+        <SectionBlock
+          title="Vücut Kameraları"
+          products={bodycamProducts}
+        />
+        <SectionBlock title="IoT ve Özel Çözümler" products={iotProducts} />
       </div>
     </main>
   );
