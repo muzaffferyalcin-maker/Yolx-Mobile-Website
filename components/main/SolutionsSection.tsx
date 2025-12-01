@@ -30,14 +30,15 @@ export default function SolutionsSection() {
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
         <motion.h2
-          variants={slideInFromLeft(0.2)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl font-bold text-slate-900 mb-6"
-        >
-          Çözümlerimiz
-        </motion.h2>
+  variants={slideInFromLeft(0.2)}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="text-2xl md:text-3xl font-bold text-slate-900 mb-6"
+>
+  Yapay Zekalı Araç Kameraları, Araç Takip ve Filo Yönetimi Çözümleri
+</motion.h2>
+
 
         <p className="text-slate-600 max-w-2xl mb-10 text-sm md:text-base">
           YOLX Mobile; lojistikten belediyelere, iş makinelerinden deniz

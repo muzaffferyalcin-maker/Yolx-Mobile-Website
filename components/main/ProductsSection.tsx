@@ -74,13 +74,13 @@ export default function ProductsSection() {
             className="max-w-xl"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-              Ürünlerimiz
+              AI Destekli Araç Kameraları, Araç Takip Cihazları ve Filo Yönetimi Ürünleri
             </h2>
             <p className="text-sm md:text-base text-slate-600">
               YOLX Mobile; AI sürücü kameraları, AİTM ve UKOME 2025 uyumlu
-              araç içi kayıt sistemleri, kompakt araç takip cihazları ve solar
-              takip çözümleri ile filonuzun tüm ihtiyaçlarını tek marka altında
-              toplar.
+              MNVR/MDVR araç içi kayıt sistemleri, kompakt GPS araç takip cihazları
+              ve solar GPS takip çözümleri ile filonuzun tüm ihtiyaçlarını tek marka
+              altında toplar.
             </p>
           </motion.div>
 

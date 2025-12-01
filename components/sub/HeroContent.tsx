@@ -31,15 +31,12 @@ const HeroContent = () => {
         </motion.div>
 
         <motion.h1
-          variants={slideInFromLeft(0.5)}
-          className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight"
-        >
-          YOLX Mobile ile{" "}
-          <span className="text-blue-600">
-            filonuzu, kameralarınızı ve ekipmanlarınızı
-          </span>{" "}
-          gerçek zamanlı yönetin.
-        </motion.h1>
+  variants={slideInFromLeft(0.5)}
+  className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight"
+>
+  Araç Takip, Yapay Zekalı Sürücü Kamerası ve Filo Yönetimi Çözümleri
+</motion.h1>
+
 
         <motion.p
           variants={slideInFromLeft(0.6)}
